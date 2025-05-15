@@ -1,7 +1,16 @@
+import os
 import unittest.mock as mock
 from unittest.mock import Mock
 
+import pytest
+
 from sdk.aws.ec2 import EC2Helper
+
+
+@pytest.fixture(scope="session", autouse=True)
+def setup_environment_variables():
+    print("Setting up environment variables")
+    os.environ["SLACK_BOT_TOKEN"] = "FAKE_BOT_TOKEN"
 
 
 @mock.patch("boto3.Session")
